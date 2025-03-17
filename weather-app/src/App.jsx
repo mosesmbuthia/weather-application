@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import sunset from "./assets/sunset.jpg"
 
 function App() {
   const [data, setData] = useState({});
@@ -26,7 +27,7 @@ function App() {
   };
 
   return (
-    <div className='app'>
+    <div className='app' style={{ backgroundImage: `url(${sunset} no-repeat center center/cover)` }} >
       <div className="container">
         <div className="top">
           <div className="search">
