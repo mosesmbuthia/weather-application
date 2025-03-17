@@ -38,13 +38,13 @@ function App() {
               >Search</button>
           </div>
           <div className="location">
-            <p>Nairobi</p>
+            <p>{data.main}</p>
           </div>
           <div className="temparature">
-            <h1>27&#0176;C</h1>
+           {data.main? <h1>{data.main.temp}°F</h1> : null}
           </div>
           <div className="description">
-            <p>Cloudy</p>
+            {data.weather?<p>{data.weather[0].main}</p> : null}
           </div>
         </div>
         <div className="bottom">
