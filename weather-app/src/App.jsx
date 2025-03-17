@@ -1,12 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
 
+
 function App() {
+  const { data, setData } = useState({});
+  const { location, setLocation } = useState('');
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid={6e7ad9534f534c7025d80de38b02e59b}`
+
+  const searchLocation = async () => {
+    if (location) {
+      try {
+        const response = await fetch(url);
+        const result = await response?.json();
+        setData(result)
+        console.log(result);
+
+      } catch (e) {
+        console.error('Error fetching data:', e);
+      }
+      setLocation('');
+    }
+  };
   return (
-    
-      <div className='app' >
+
+    <div className='app' >
       <div className="container">
         <div className="top">
+          <div className="search">
+            <input
+              value={location}
+              onChange={event => setLocation(event.target.value)}
+              placeholder='Enter Location'
+              
+              type="text" />
+              <button className='search-btn'
+              onClick={searchLocation}
+              >Search</button>
+          </div>
           <div className="location">
             <p>Nairobi</p>
           </div>
@@ -32,8 +62,8 @@ function App() {
           </div>
         </div>
       </div>
-      </div>
-    
+    </div>
+
   )
 }
 
